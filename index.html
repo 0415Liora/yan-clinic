@@ -139,7 +139,7 @@ img{display:block;max-width:100%}
 .floodlayer.fade .fw{animation:fwOut 1.8s cubic-bezier(.2,.7,.3,1) forwards}
 @keyframes fwOut{0%{opacity:var(--op,.85);filter:blur(0);scale:1}
   34%{opacity:.95;scale:1.09}100%{opacity:0;filter:blur(11px);scale:1.62}}
-.flash{position:fixed;inset:0;z-index:40;pointer-events:none;opacity:0;background:rgba(190,215,240,.16)}
+.flash{position:fixed;inset:0;z-index:40;pointer-events:none;opacity:0;background:rgba(198,46,58,.14)}
 .flash.on{animation:fl .22s ease-out}
 @keyframes fl{0%{opacity:0}18%{opacity:1}100%{opacity:0}}
 .bolt{position:fixed;top:0;z-index:41;width:70px;height:56vh;pointer-events:none;opacity:0;
@@ -151,6 +151,24 @@ img{display:block;max-width:100%}
 .whisper{right:5vw;bottom:11vh;color:var(--ink3)}
 .errtag{left:4vw;top:12vh;color:var(--red);font-family:var(--mono);font-size:11px}
 .whisper.on,.errtag.on{opacity:1}
+/* 随机红色区域：定时在页面任意位置闪现的红光斑 / 代码错误高亮条 / 选中框。
+   纯视觉叠加，pointer-events:none，不改动任何文字内容 */
+.redzones{position:fixed;inset:0;z-index:37;pointer-events:none;overflow:hidden}
+.rz{position:absolute;display:block;opacity:0;pointer-events:none;
+  animation:rzFlash var(--rd,1100ms) ease-out var(--rz-delay,0ms) forwards}
+.rz.bloom{border-radius:50%;filter:blur(15px);
+  background:radial-gradient(ellipse at center,rgba(224,48,60,.62),rgba(156,20,32,.26) 52%,transparent 76%)}
+.rz.bar{height:var(--rh,22px);
+  background:linear-gradient(90deg,transparent,rgba(212,34,46,.40) 10%,rgba(238,62,74,.54) 48%,rgba(190,26,40,.30) 88%,transparent);
+  box-shadow:0 0 28px rgba(198,30,44,.44),inset 0 0 12px rgba(232,62,72,.28)}
+.rz.frame{background:rgba(158,22,32,.13);border:1px solid rgba(226,54,66,.58);
+  box-shadow:0 0 22px rgba(196,30,44,.42),inset 0 0 26px rgba(170,26,38,.26)}
+.rz.scan{height:2px;background:linear-gradient(90deg,transparent,rgba(242,72,82,.88),transparent);
+  box-shadow:0 0 15px rgba(222,40,54,.72);animation-name:rzScan}
+@keyframes rzFlash{0%{opacity:0;transform:scale(.72)}10%{opacity:1}38%{opacity:.9}
+  46%{opacity:.34}56%{opacity:.96}78%{opacity:.6}100%{opacity:0;transform:scale(1.18)}}
+@keyframes rzScan{0%{opacity:0;transform:translateY(-40px)}12%{opacity:1}
+  100%{opacity:0;transform:translateY(var(--sy,180px))}}
 
 /* ---------- 书页 ---------- */
 .book{position:relative;z-index:3;width:min(1180px,94vw);height:100vh;height:100dvh;margin:0 auto;
@@ -200,9 +218,9 @@ img{display:block;max-width:100%}
 .two-col{display:grid;grid-template-columns:1.25fr .9fr;gap:24px;position:relative;z-index:2}
 .col{min-width:0}
 .hot-zone{position:relative;transition:background .5s,box-shadow .5s}
-.hot-zone.hot{background:radial-gradient(ellipse at 50% 50%,rgba(150,36,44,.20),transparent 72%);
-  box-shadow:inset 0 0 60px rgba(160,40,48,.14)}
-.hot-text{color:#e08a8f!important;text-shadow:0 0 14px rgba(181,60,67,.4)}
+.hot-zone.hot{background:radial-gradient(ellipse at 50% 50%,rgba(184,38,50,.32),rgba(122,16,28,.10) 58%,transparent 78%);
+  box-shadow:inset 0 0 72px rgba(182,42,54,.26),0 0 24px rgba(160,30,42,.16)}
+.hot-text{color:#f28a90!important;text-shadow:0 0 16px rgba(202,50,64,.65),0 0 5px rgba(232,92,102,.45)}
 [data-tw].typing::after{content:"";display:inline-block;width:6px;height:1em;vertical-align:-2px;
   margin-left:2px;background:var(--red);animation:caret .7s steps(1) infinite}
 @keyframes caret{50%{opacity:0}}
@@ -647,6 +665,7 @@ img{display:block;max-width:100%}
 <div class="bolt" id="bolt"></div>
 <div class="whisper" id="whisper"></div>
 <div class="errtag" id="errTag"></div>
+<div class="redzones" id="redzones" aria-hidden="true"></div>
 
 <!-- 开场：桌上的档案 -->
 <div class="gate" id="gate">
@@ -1016,7 +1035,8 @@ img{display:block;max-width:100%}
   function later(fn,ms){var t=setTimeout(function(){timers.delete(t);fn()},ms);timers.add(t);return t}
   function cancelAll(){
     timers.forEach(clearTimeout);timers.clear();
-    clearTimeout(glitchTO);glitchTO=0;
+    /* glitch 是全局氛围，不随翻页取消；只清掉本页的临时红区节点 */
+    var rz=$('#redzones');if(rz)rz.innerHTML='';
     jobs.length=0;cancelAnimationFrame(raf);raf=0;
     $$('.hot').forEach(function(e){e.classList.remove('hot')});
     $$('.hot-text').forEach(function(e){e.classList.remove('hot-text')});
@@ -1087,6 +1107,8 @@ img{display:block;max-width:100%}
     paint();
     if(!fromHash)history.replaceState(null,'',location.pathname+location.search+'#p'+cur);
     runPage(pages[cur]);
+    /* 翻页后重新安排随机红区，让新页也会「时不时」变红 */
+    if(started){clearTimeout(glitchTO);scheduleGlitch(2500+Math.random()*2800);}
   }
   navs.forEach(function(n){n.addEventListener('click',function(){go(+n.dataset.i)})});
   $$('[data-go]').forEach(function(b){b.addEventListener('click',function(){go(+b.dataset.go)})});
@@ -1219,7 +1241,7 @@ img{display:block;max-width:100%}
   /* ---------- 开场 ---------- */
   var gate=$('#gate'),gateFrame=$('#gateFrame'),deny=$('#gateDeny'),enter=$('#gateEnter');
   var flood=$('#openFlood'),gateSay=$('#gateSay'),gateHint=$('#gateHint');
-  var flash=$('#flash'),bolt=$('#bolt'),errTag=$('#errTag'),whisper=$('#whisper');
+  var flash=$('#flash'),bolt=$('#bolt'),errTag=$('#errTag'),whisper=$('#whisper'),redzones=$('#redzones');
   function say(t){gateSay.textContent=t;gateSay.classList.remove('show');void gateSay.offsetWidth;gateSay.classList.add('show')}
   var floodLayer=$('#floodLayer');
   /* 轻提示：边缘零星几个字（不遮挡档案）；满屏：纯黑不透明、最顶层、密集铺满后渐渐消失 */
@@ -1305,10 +1327,42 @@ img{display:block;max-width:100%}
       },dur+300);
     }
   }
+  var RZ_TYPES=['bloom','bloom','bar','frame','scan','bar','bloom'];
+  /* 随机红色区域：位置/大小/形状都随机，只做半透明视觉叠加，绝不改任何文字 */
+  function spawnRedZones(){
+    if(!redzones||RM)return;
+    redzones.innerHTML='';
+    var W=window.innerWidth,H=window.innerHeight;
+    var n=W<620?2:3+Math.floor(Math.random()*2);
+    for(var i=0;i<n;i++){
+      var d=document.createElement('i');
+      var t=RZ_TYPES[Math.floor(Math.random()*RZ_TYPES.length)];
+      d.className='rz '+t;
+      var w,h,left,top;
+      if(t==='bar'||t==='scan'){
+        w=W*(.18+Math.random()*.48);h=t==='scan'?2:(10+Math.random()*30);
+        left=Math.random()*W-w*.45;top=Math.random()*H*.92;
+        d.style.width=w.toFixed(0)+'px';
+        if(t==='bar')d.style.setProperty('--rh',h.toFixed(0)+'px');
+        d.style.setProperty('--sy',(70+Math.random()*190).toFixed(0)+'px');
+      }else{
+        w=W*(.10+Math.random()*.26);h=H*(.08+Math.random()*.24);
+        left=Math.random()*W-w*.7;top=Math.random()*H-h*.7;
+        d.style.width=w.toFixed(0)+'px';d.style.height=h.toFixed(0)+'px';
+      }
+      d.style.left=left.toFixed(0)+'px';d.style.top=top.toFixed(0)+'px';
+      d.style.setProperty('--rd',(900+Math.random()*700).toFixed(0)+'ms');
+      d.style.setProperty('--rz-delay',(Math.random()*420).toFixed(0)+'ms');
+      redzones.appendChild(d);
+    }
+    later(function(){if(redzones)redzones.innerHTML=''},2100);
+  }
   var WHISPERS=['「再翻一页。」','「别停。」','「你想看的不就是这个吗？」','「打开吧。」','「已经走到这里了。」','「继续往下看。」','「别合上。」','「看清楚一点。」','「乖，慢慢看。」'];
   var ERRORS=['这一行不是我写的。','真的 / 假的','别分辨了。','> 笔迹不太对','你确定刚才读过这一句吗？','有一句，是她写的。'];
   function pulseGlitch(){
-    if(!started||document.hidden||raf||flooding)return;
+    if(!started||document.hidden||flooding||RM)return;
+    if(raf){glitchTO=setTimeout(pulseGlitch,800);return;}
+    spawnRedZones();
     bolt.style.left=(16+Math.random()*66)+'%';
     flash.classList.remove('on');void flash.offsetWidth;flash.classList.add('on');
     bolt.classList.remove('on');void bolt.offsetWidth;bolt.classList.add('on');
@@ -1333,7 +1387,7 @@ img{display:block;max-width:100%}
   function scheduleGlitch(ms){
     glitchTO=setTimeout(function(){
       if(started&&!document.hidden)pulseGlitch();
-      scheduleGlitch(9000+Math.random()*10000);
+      scheduleGlitch(7000+Math.random()*7000);
     },ms);
   }
   function begin(){
@@ -1345,7 +1399,7 @@ img{display:block;max-width:100%}
     whisper.textContent='「乖。」';whisper.classList.add('on');
     later(function(){whisper.classList.remove('on')},1600);
     playBgm();
-    scheduleGlitch(5000+Math.random()*4000);
+    scheduleGlitch(3500+Math.random()*3000);
     runPage(pages[cur]);
   }
   enter.addEventListener('click',begin);
@@ -1379,7 +1433,7 @@ img{display:block;max-width:100%}
   }
   if(location.search.indexOf('open=1')>=0){
     started=true;gate.classList.add('gone');soundBtn.classList.add('show');
-    scheduleGlitch(5000+Math.random()*4000);
+    scheduleGlitch(3500+Math.random()*3000);
   }
   paint();
   if(TW_OFF){
