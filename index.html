@@ -17,10 +17,14 @@ html,body{height:100%;margin:0}
 body{
   color:var(--ink);font-family:"Songti SC","STSong","Noto Serif CJK SC","Source Han Serif SC",serif;
   background:
-    radial-gradient(ellipse 58% 46% at 16% 10%,rgba(52,70,94,.52),transparent 72%),
-    radial-gradient(ellipse 46% 58% at 86% 74%,rgba(104,34,43,.30),transparent 74%),
-    radial-gradient(ellipse 72% 42% at 48% 108%,rgba(30,43,61,.66),transparent 72%),
-    conic-gradient(from 208deg at 68% 28%,#0a0e15,#131b28,#090d14,#111823,#0a0e15);
+    radial-gradient(ellipse 42% 30% at 78% 8%,rgba(150,28,38,.34),transparent 68%),
+    radial-gradient(ellipse 36% 52% at 8% 62%,rgba(122,20,30,.28),transparent 70%),
+    radial-gradient(ellipse 54% 26% at 52% 96%,rgba(168,32,42,.22),transparent 72%),
+    radial-gradient(ellipse 26% 40% at 92% 52%,rgba(96,14,22,.30),transparent 70%),
+    conic-gradient(from 214deg at 64% 34%,rgba(120,18,28,.14),transparent 18%,rgba(140,24,34,.10) 34%,transparent 52%,rgba(90,12,20,.16) 72%,transparent 88%),
+    radial-gradient(ellipse 58% 46% at 16% 10%,rgba(52,70,94,.46),transparent 72%),
+    radial-gradient(ellipse 72% 42% at 48% 108%,rgba(30,43,61,.62),transparent 72%),
+    conic-gradient(from 208deg at 68% 28%,#080a0f,#141a25,#090c12,#111823,#080a0f);
   background-attachment:fixed;overflow-x:hidden;-webkit-font-smoothing:antialiased;
 }
 body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.16;
@@ -31,9 +35,13 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2;opac
 .b1{width:52vw;height:44vw;left:-14vw;top:-10vw;border-radius:62% 38% 55% 45%/48% 60% 40% 52%;
   background:radial-gradient(circle at 40% 40%,#3d5573,transparent 70%);animation:drift1 42s ease-in-out infinite alternate}
 .b2{width:46vw;height:52vw;right:-12vw;bottom:-16vw;border-radius:44% 56% 38% 62%/58% 42% 60% 40%;
-  background:radial-gradient(circle at 55% 45%,#6e2730,transparent 72%);opacity:.13;animation:drift2 51s ease-in-out infinite alternate}
+  background:radial-gradient(circle at 55% 45%,#8e1c28,transparent 72%);opacity:.26;animation:drift2 51s ease-in-out infinite alternate}
 .b3{width:38vw;height:30vw;left:34vw;top:38vh;border-radius:58% 42% 66% 34%/42% 54% 46% 58%;
   background:radial-gradient(circle at 50% 50%,#2b3b52,transparent 74%);opacity:.12;animation:drift1 60s ease-in-out infinite alternate-reverse}
+.b4{width:40vw;height:34vw;left:-10vw;top:44vh;border-radius:66% 34% 48% 52%/38% 62% 40% 60%;
+  background:radial-gradient(circle at 48% 50%,#7a1420,transparent 70%);opacity:.20;animation:drift1 47s ease-in-out infinite alternate}
+.b5{width:34vw;height:46vw;right:6vw;top:-14vw;border-radius:38% 62% 56% 44%/62% 38% 58% 42%;
+  background:radial-gradient(circle at 52% 46%,#5c0e18,transparent 72%);opacity:.18;animation:drift2 56s ease-in-out infinite alternate-reverse}
 @keyframes drift1{to{transform:translate3d(7vw,5vh,0) scale(1.14)}}
 @keyframes drift2{to{transform:translate3d(-6vw,-6vh,0) scale(1.1)}}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
@@ -42,7 +50,7 @@ img{display:block;max-width:100%}
 
 /* ---------- 开场 ---------- */
 .gate{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:20px;
-  background:radial-gradient(ellipse at 50% 42%,rgba(9,12,18,.62),rgba(5,7,11,.90));
+  background:#030406 radial-gradient(ellipse 62% 52% at 50% 44%,rgba(64,10,17,.26),transparent 72%);
   transition:opacity .7s ease,visibility .7s}
 .gate.gone{opacity:0;visibility:hidden;pointer-events:none}
 .gate-frame{width:min(560px,92vw);position:relative;transition:transform .5s ease}
@@ -52,7 +60,6 @@ img{display:block;max-width:100%}
   box-shadow:0 30px 90px rgba(0,0,0,.6),inset 0 0 70px rgba(60,80,110,.08)}
 .gate-paper::before{content:"";position:absolute;left:22px;top:0;bottom:0;width:1px;background:rgba(181,60,67,.28)}
 .gate-paper::after{content:"";position:absolute;inset:8px;border:1px solid rgba(186,206,226,.06);pointer-events:none}
-.gate-cross{position:absolute;right:16px;top:-34px;width:74px;opacity:.30;transform:rotate(9deg)}
 .gate-cap{font-size:12px;letter-spacing:.42em;color:var(--ink3);margin:0 0 20px}
 .gate-q{font-size:30px;letter-spacing:.20em;margin:0 0 6px;color:var(--ink)}
 .gate-sub{font-size:12px;color:var(--ink4);letter-spacing:.14em;margin:0 0 32px}
@@ -71,12 +78,30 @@ img{display:block;max-width:100%}
 @keyframes sayIn{from{opacity:.2;transform:translateY(5px)}to{opacity:1;transform:none}}
 .gate-hint{margin:8px 0 0;font-size:12px;color:var(--ink4);letter-spacing:.12em}
 .gate-hint.obey{color:#c07a80}
-.openflood{position:fixed;inset:0;z-index:55;pointer-events:none;opacity:0;transition:opacity .42s ease;overflow:hidden}
+.openflood{position:fixed;inset:0;z-index:61;pointer-events:none;opacity:0;transition:opacity .42s ease;overflow:hidden}
 .openflood.on{opacity:1}
 .openflood span{position:absolute;color:var(--red);font-weight:700;letter-spacing:.1em;
   text-shadow:0 0 16px rgba(181,60,67,.5);opacity:var(--op,.5);transform:rotate(var(--rot,0deg));
   animation:bleed var(--dur,1400ms) ease-out both}
 @keyframes bleed{from{filter:blur(7px);transform:rotate(var(--rot,0deg)) scale(.86)}to{filter:blur(0);transform:rotate(var(--rot,0deg)) scale(1)}}
+/* 满屏「打开」：纯黑不透明、最顶层、动态浮现后渐渐消失 */
+.floodlayer{position:fixed;inset:0;z-index:999;background:#000;opacity:0;visibility:hidden;
+  pointer-events:none;overflow:hidden}
+.floodlayer.on{opacity:1;visibility:visible;pointer-events:auto}
+.floodlayer.fade{opacity:0;transition:opacity 1.15s ease}
+.floodlayer .fw{position:absolute;white-space:nowrap;line-height:1;font-weight:700;letter-spacing:.02em;
+  color:#cf1622;text-shadow:0 0 12px rgba(190,20,30,.55);
+  animation:fwIn var(--fi,520ms) ease-out var(--fd,0ms) both,
+            fwDrift var(--fr,2.6s) ease-in-out var(--fd,0ms) infinite alternate}
+.floodlayer .fw.bright{color:#f0303c;text-shadow:0 0 18px rgba(240,40,52,.7)}
+.floodlayer .fw.deep{color:#8c0d16}
+.floodlayer .fw.stroke{color:transparent;-webkit-text-stroke:1.2px #e8eef4;text-shadow:none}
+.floodlayer .fw.stroke2{color:transparent;-webkit-text-stroke:1px #d0242e;text-shadow:none}
+.floodlayer .fw.white{color:#f2f4f7;text-shadow:0 0 14px rgba(220,230,240,.45)}
+.floodlayer .fw.ghost{text-shadow:3px 0 10px rgba(190,20,30,.8),-2px 0 8px rgba(190,20,30,.55)}
+@keyframes fwIn{from{opacity:0;transform:rotate(var(--rot,0deg)) scale(.68) translateY(12px);filter:blur(6px)}
+  to{opacity:var(--op,.85);transform:rotate(var(--rot,0deg)) scale(1) translateY(0);filter:blur(0)}}
+@keyframes fwDrift{from{translate:0 0}to{translate:var(--dx,3px) var(--dy,-3px)}}
 .flash{position:fixed;inset:0;z-index:40;pointer-events:none;opacity:0;background:rgba(190,215,240,.16)}
 .flash.on{animation:fl .22s ease-out}
 @keyframes fl{0%{opacity:0}18%{opacity:1}100%{opacity:0}}
@@ -97,6 +122,10 @@ img{display:block;max-width:100%}
   font-size:10px;letter-spacing:.24em;color:var(--ink4);padding:0 6px}
 .book-head{padding-bottom:12px;border-bottom:1px solid var(--line)}
 .book-head .clinic{font-size:13px;letter-spacing:.42em;color:var(--ink2)}
+.book-head .clinic b{font-weight:400;margin-right:14px}
+.book-head .clinic{font-size:12px}
+.book-head .conf{display:flex;align-items:center;gap:7px}
+.book-head .conf i{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--red);box-shadow:0 0 9px var(--red)}
 .book-foot{padding-top:12px;border-top:1px solid var(--line);margin-top:auto}
 .book-body{display:flex;gap:22px;flex:1;min-height:0;padding:20px 0}
 .index{width:86px;flex:0 0 86px;display:flex;flex-direction:column;gap:4px;
@@ -115,15 +144,21 @@ img{display:block;max-width:100%}
   box-shadow:inset 0 0 90px rgba(60,82,112,.07),0 18px 60px rgba(0,0,0,.34)}
 .paper::-webkit-scrollbar{width:5px}.paper::-webkit-scrollbar-thumb{background:rgba(181,60,67,.4)}
 .page{display:none;position:relative;min-height:100%;padding:36px 44px 42px;overflow:hidden}
+.page::after{content:"";position:absolute;left:5px;top:12%;width:14px;height:76%;pointer-events:none;z-index:1;
+  background:radial-gradient(circle at 7px 7px,transparent 0 3px,rgba(186,206,226,.16) 3px 4px,transparent 4.5px) 0 0/14px 128px repeat-y}
 .page.active{display:block;animation:pageIn .30s ease-out}
 @keyframes pageIn{from{opacity:.35}to{opacity:1}}
 .page::before{content:"";position:absolute;left:20px;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,rgba(181,60,67,.26),transparent)}
-.phead{display:flex;align-items:center;gap:16px;margin-bottom:24px;position:relative;z-index:2}
-.pnum{font-size:34px;color:var(--red2);line-height:1;min-width:38px}
-.kicker{font-size:10px;letter-spacing:.30em;color:var(--ink4);margin:0 0 5px;text-transform:uppercase}
-.ptitle{font-size:23px;letter-spacing:.20em;margin:0;font-weight:400}
-.ptitle em{font-style:normal;font-size:10px;letter-spacing:.18em;color:var(--ink4);margin-left:12px}
-.label{font-size:10px;letter-spacing:.28em;color:var(--ink4);margin:0 0 10px}
+.phead{display:flex;align-items:center;gap:20px;margin-bottom:12px;padding-bottom:14px;
+  border-bottom:1px solid var(--line);position:relative;z-index:2}
+.pnum{font-size:42px;color:var(--red);line-height:1;min-width:46px}
+.ph-txt{min-width:0}
+.kicker{font-size:10px;letter-spacing:.22em;color:var(--ink4);margin:0 0 6px}
+.ptitle{display:inline-block;font-size:23px;letter-spacing:.18em;margin:0;font-weight:400}
+.sub-en{display:inline-block;font-style:italic;font-family:Georgia,serif;font-size:12px;
+  letter-spacing:.06em;color:var(--ink4);margin-left:14px}
+.red-underline{display:block;width:96px;height:1px;background:linear-gradient(90deg,var(--red),transparent);margin:0 0 22px}
+.label{font-size:10px;letter-spacing:.22em;color:var(--ink4);margin:0 0 10px}
 .two-col{display:grid;grid-template-columns:1.25fr .9fr;gap:34px;position:relative;z-index:2}
 .col{min-width:0}
 .hot-zone{position:relative;transition:background .5s,box-shadow .5s}
@@ -135,7 +170,7 @@ img{display:block;max-width:100%}
 @keyframes caret{50%{opacity:0}}
 
 /* 封面 */
-.cover .cover-cross{right:-30px;top:-40px;width:180px;opacity:.13;transform:rotate(4deg)}
+.cover .cover-cross{right:-10px;top:-20px;width:132px;opacity:.24;transform:rotate(4deg)}
 .cover .cover-snake{right:2%;top:16%;width:min(46%,380px);opacity:.82}
 .cover .cover-snake2{left:-6%;bottom:-14%;width:230px;opacity:.10;transform:rotate(180deg)}
 .cover-inner{position:relative;z-index:3;padding:8vh 0 4vh;max-width:56%}
@@ -170,7 +205,6 @@ img{display:block;max-width:100%}
 .stamp.small{width:78px;height:78px;font-size:11px;margin-top:18px}
 .barcode{height:34px;width:150px;margin:22px 0;opacity:.35;
   background:repeating-linear-gradient(90deg,var(--ink3) 0 2px,transparent 2px 4px,var(--ink3) 4px 5px,transparent 5px 9px)}
-.reg-cross{position:absolute;right:6%;bottom:2%;width:110px;opacity:.20}
 
 /* 问诊 */
 .dialog{position:relative;z-index:2}
@@ -226,28 +260,40 @@ img{display:block;max-width:100%}
 .reset{margin-top:16px;padding:7px 12px;border:1px solid var(--line);font-size:10px;letter-spacing:.16em;color:var(--ink4)}
 .reset:hover{color:var(--ink2);border-color:rgba(186,206,226,.35)}
 .screen-foot{margin:16px 0 0;font-size:10px;letter-spacing:.14em;color:var(--ink4);position:relative;z-index:2}
-.screen-cross{position:absolute;left:2%;bottom:1%;width:80px;opacity:.16}
 
-/* 诊断 */
-.diag{font-size:22px;letter-spacing:.10em;margin:0 0 22px;color:#d9b0b3;font-weight:400}
-.diag span{display:block;font-size:9px;letter-spacing:.20em;color:var(--ink4);margin-top:7px}
-.sym,.rx{margin:0 0 22px;padding-left:18px;font-size:12px;line-height:2.1;color:var(--ink2)}
-.sym li,.rx li::marker{color:var(--ink4)}
-.rx li::marker{color:var(--red2)}
-.vial{position:relative;width:110px;margin:0 auto 16px;opacity:.72}
-.diag-cross{position:absolute;right:0;top:0;width:74px;opacity:.18}
+/* 诊断（旧版排版 + 原 SVG） */
+.diag{font-size:21px;letter-spacing:.14em;margin:0 0 4px;color:#dcc0c2;font-weight:400;line-height:1.5}
+.diag-en{font-family:Georgia,serif;font-style:italic;font-size:11px;letter-spacing:.20em;color:var(--red2);margin:0 0 22px}
+.sym,.rx{margin:0 0 20px;padding:0;font-size:12px;line-height:2.05;color:var(--ink2);list-style:none}
+.sym li,.rx li{position:relative}
+.sym li{padding-left:18px}
+.sym li::before{content:"·";position:absolute;left:4px;color:var(--ink4)}
+.rx{counter-reset:rx}
+.rx li{padding-left:24px;counter-increment:rx}
+.rx li::before{content:counter(rx,cjk-ideographic);position:absolute;left:0;color:var(--red2);font-size:11px}
+.vial{display:block;width:92px;height:auto;margin:0 auto 14px;opacity:.88}
+.rx-label{font-size:10px;letter-spacing:.22em;color:var(--ink4);border-bottom:1px solid var(--line);padding-bottom:8px;margin:0 0 12px}
 
-/* 夜间 */
-.log p{font-size:12px;line-height:2.1;color:var(--ink2);margin:0 0 6px;position:relative;z-index:2}
-.log p span{font-family:ui-monospace,monospace;color:var(--red2);margin-right:12px;font-size:11px}
-.sig-line{margin-top:20px;font-size:12px;color:var(--ink3);letter-spacing:.10em}
-.sig-line b{color:var(--ink);font-size:16px}
-.sig-line em{font-style:normal;font-size:10px;color:var(--ink4);margin-left:8px}
-.night-candle{width:190px;margin:0 auto;opacity:.66}
-.night-snake{position:absolute;right:-4%;bottom:-8%;width:190px;opacity:.22;transform:rotate(12deg)}
+/* 夜间（旧版排版 + 原 SVG） */
+.log p{font-size:12px;line-height:2.05;color:var(--ink2);margin:0;padding:9px 0;
+  border-bottom:1px dashed rgba(186,206,226,.10);position:relative;z-index:2}
+.log p span{font-family:ui-monospace,monospace;color:var(--red2);margin-right:14px;font-size:11px}
+.sig-line{margin-top:22px;font-size:12px;color:var(--ink3);letter-spacing:.10em}
+.sig-line b{color:var(--ink);font-size:17px;margin:0 6px;font-weight:400}
+.sig-line em{font-style:italic;font-family:Georgia,serif;font-size:11px;color:var(--ink4);margin-left:6px}
+.art{display:flex;align-items:center;justify-content:center}
+.still{width:100%;max-width:280px;height:330px;overflow:visible}
+.snake{fill:none;stroke:#9fb7bf;stroke-width:7;stroke-linecap:round;opacity:.82;stroke-dasharray:900;stroke-dashoffset:900}
+.snake-2{fill:none;stroke:#dce7ea;stroke-width:1.3;stroke-dasharray:3 7;opacity:.6;stroke-dashoffset:900}
+.page.active .snake,.page.active .snake-2{animation:draw 3.2s cubic-bezier(.35,.1,.3,1) .4s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.flame{transform-origin:center bottom;animation:flick 2.2s ease-in-out infinite}
+@keyframes flick{0%,100%{transform:scale(1) rotate(-3deg);opacity:.88}45%{transform:scale(1.1,1.16) rotate(3deg);opacity:1}70%{transform:scale(.94,1.04) rotate(-1deg);opacity:.8}}
+.glow{animation:glowA 2.2s ease-in-out infinite}
+@keyframes glowA{0%,100%{opacity:.35}50%{opacity:.7}}
 
 /* 联络 */
-.contact .hourglass{position:absolute;right:5%;bottom:4%;width:170px;opacity:.30}
+.contact .keys{position:absolute;right:5%;bottom:4%;width:170px;opacity:.26}
 .contact-inner{position:relative;z-index:2;max-width:620px}
 .lead{font-size:15px;line-height:2.1;color:var(--ink2);margin:6px 0 30px}
 .accounts{margin:0 0 22px}
@@ -299,7 +345,7 @@ img{display:block;max-width:100%}
   .screen-side .label,.verdict,.reset{grid-column:1/-1}
   .tally{border:0;display:block;text-align:center}
   .tally b{display:block}
-  .contact .hourglass{width:110px;opacity:.2}
+  .contact .keys{width:110px;opacity:.18}
   .sound{padding:6px 9px;margin-left:4px}
   .sound .sound-txt{display:none}
   .book-foot{flex-wrap:wrap;gap:6px}
@@ -314,7 +360,7 @@ img{display:block;max-width:100%}
 </head>
 <body>
 
-<div class="atmos"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i></div>
+<div class="atmos"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i><i class="blob b4"></i><i class="blob b5"></i></div>
 <div class="flash" id="flash"></div>
 <div class="bolt" id="bolt"></div>
 <div class="whisper" id="whisper"></div>
@@ -324,7 +370,6 @@ img{display:block;max-width:100%}
 <div class="gate" id="gate">
   <div class="gate-frame" id="gateFrame">
     <div class="gate-paper">
-      <img class="gate-cross deco" src="assets/cross-a.webp" alt="">
       <p class="gate-cap">桌 上 放 着 一 份 档 案</p>
       <p class="gate-q" id="gateQ">要 打 开 吗 ？</p>
       <p class="gate-sub">灯还亮着，没人催你。</p>
@@ -338,11 +383,12 @@ img{display:block;max-width:100%}
   </div>
 </div>
 <div class="openflood" id="openFlood"></div>
+<div class="floodlayer" id="floodLayer" aria-hidden="true"></div>
 
 <main class="book">
   <header class="book-head">
-    <div class="clinic">静 默 诊 所</div>
-    <div class="conf">CASE Ⅶ-1113 · 保密</div>
+    <div class="clinic"><b>静 默 诊 所</b>THE CLINIC OF QUIET THINGS</div>
+    <div class="conf"><i></i>CASE Ⅶ-1113 · 保密 / CONFIDENTIAL</div>
   </header>
 
   <div class="book-body">
@@ -361,7 +407,7 @@ img{display:block;max-width:100%}
 
       <!-- 0 封面 -->
       <section class="page cover active" data-i="0">
-        <img class="deco cover-cross" src="assets/cross.webp" alt="" loading="lazy">
+        <img class="deco cover-cross" src="assets/cross-one.webp" alt="" loading="lazy">
         <img class="deco cover-snake" src="assets/snake.webp" alt="">
         <img class="deco cover-snake2" src="assets/snake.webp" alt="" loading="lazy">
         <div class="cover-inner hot-zone">
@@ -378,11 +424,11 @@ img{display:block;max-width:100%}
 
       <!-- 1 初次登记 -->
       <section class="page" data-i="1">
-        <img class="deco reg-cross" src="assets/cross-b.webp" alt="" loading="lazy">
         <div class="phead">
           <span class="pnum">Ⅰ</span>
-          <div><p class="kicker" data-tw>PATIENT PROFILE</p><h2 class="ptitle" data-tw>初 次 登 记</h2></div>
+          <div class="ph-txt"><p class="kicker" data-tw>PATIENT PROFILE / 患者资料</p><h2 class="ptitle" data-tw>初 次 登 记</h2><em class="sub-en" data-tw>Intake Form</em></div>
         </div>
+        <i class="red-underline"></i>
         <div class="two-col">
           <div class="col hot-zone">
             <dl class="form">
@@ -407,8 +453,9 @@ img{display:block;max-width:100%}
       <section class="page" data-i="2">
         <div class="phead">
           <span class="pnum">Ⅱ</span>
-          <div><p class="kicker" data-tw>INTAKE NOTES</p><h2 class="ptitle" data-tw>「请 坐」</h2></div>
+          <div class="ph-txt"><p class="kicker" data-tw>INTAKE NOTES / 问诊记录</p><h2 class="ptitle" data-tw>「请 坐」</h2><em class="sub-en" data-tw>Chief Complaint</em></div>
         </div>
+        <i class="red-underline"></i>
         <div class="dialog hot-zone">
           <div class="line doc"><span class="who">医　生</span><p data-tw data-glitch="今天换我来问。">请坐。今天想从哪里说起？</p></div>
           <div class="line pat"><span class="who">患　者</span><p data-tw data-glitch="……是她把我弄丢的。">……我好像，把自己弄丢了一部分。</p></div>
@@ -433,11 +480,11 @@ img{display:block;max-width:100%}
       <!-- 3 交互界面 · 喜雷全条目（逐行打字） -->
       <section class="page screen" data-i="3">
         <img class="deco screen-bg" src="assets/west.webp" alt="" loading="lazy">
-        <img class="deco screen-cross" src="assets/cross-a.webp" alt="" loading="lazy">
         <div class="phead">
           <span class="pnum">※</span>
-          <div><p class="kicker" data-tw>INTERACTIVE · 喜雷全条目</p><h2 class="ptitle" data-tw>请 查 阅</h2></div>
+          <div class="ph-txt"><p class="kicker" data-tw>INTERACTIVE · 喜雷全条目</p><h2 class="ptitle" data-tw>请 查 阅</h2><em class="sub-en" data-tw>Please Review</em></div>
         </div>
+        <i class="red-underline"></i>
         <div class="screen-wrap hot-zone">
           <div class="screen-main">
             <div class="screen-tabs">
@@ -459,18 +506,19 @@ img{display:block;max-width:100%}
         <p class="screen-foot" data-tw>点击任意一行 · 可让它重新写一遍</p>
       </section>
 
-      <!-- 4 长期医嘱 -->
+      <!-- 4 长期医嘱（旧版排版 + 原 SVG） -->
       <section class="page" data-i="4">
-        <img class="deco diag-cross" src="assets/cross-a.webp" alt="" loading="lazy">
         <div class="phead">
           <span class="pnum">Ⅲ</span>
-          <div><p class="kicker" data-tw>DIAGNOSIS / Rx</p><h2 class="ptitle" data-tw>长 期 医 嘱</h2></div>
+          <div class="ph-txt"><p class="kicker" data-tw>DIAGNOSIS / Rx · 诊断与处方</p><h2 class="ptitle" data-tw>长 期 医 嘱</h2><em class="sub-en" data-tw>Long-term Order</em></div>
         </div>
+        <i class="red-underline"></i>
         <div class="two-col">
           <div class="col hot-zone">
-            <p class="label" data-tw>诊　断</p>
-            <h3 class="diag" data-tw data-glitch="解离性身份障碍">慢性温柔性失血<span>CHRONIC GENTLE HEMORRHAGE</span></h3>
-            <p class="label" data-tw>症　状</p>
+            <p class="label" data-tw>诊　断 / DIAGNOSIS</p>
+            <h3 class="diag" data-tw data-glitch="解离性身份障碍">慢性温柔性失血</h3>
+            <p class="diag-en" data-tw>CHRONIC GENTLE HEMORRHAGE</p>
+            <p class="label" data-tw>症　状 / SYMPTOMS</p>
             <ul class="sym">
               <li data-tw>对废墟有归属感，在完整的地方反而坐不住</li>
               <li data-tw>反复梦见蛇褪下的皮，叠得很整齐</li>
@@ -478,8 +526,41 @@ img{display:block;max-width:100%}
             </ul>
           </div>
           <div class="col side">
-            <img class="vial deco" style="position:relative" src="assets/relic-vial.webp" alt="" loading="lazy">
-            <p class="label" data-tw>处　方</p>
+            <svg class="vial" viewBox="0 0 90 132" aria-hidden="true">
+  <defs>
+    <linearGradient id="liquid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e03741" stop-opacity=".78"/>
+      <stop offset="1" stop-color="#5e0a10" stop-opacity=".95"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#cfe0e4" stop-opacity=".10"/>
+      <stop offset=".28" stop-color="#cfe0e4" stop-opacity=".02"/>
+      <stop offset=".75" stop-color="#0a1216" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#cfe0e4" stop-opacity=".07"/>
+    </linearGradient>
+  </defs>
+  <path d="M32 3 H58 a2 2 0 0 1 2 2 V16 H30 V5 a2 2 0 0 1 2 -2 Z" fill="#8d887a" opacity=".72"/>
+  <path d="M34 6 H56 M34 9 H52 M34 12 H56 M34 14 H48" stroke="#45443d" stroke-width=".5" opacity=".5" fill="none"/>
+  <path d="M30 16 H60" stroke="#9db3bb" stroke-width="1.4" fill="none"/>
+  <path d="M34 16 H56 V27 H34 Z" fill="none" stroke="#9db3bb" stroke-width="1"/>
+  <path d="M28 27 H62" stroke="#9db3bb" stroke-width="1.2" fill="none"/>
+  <path d="M28 27 H62 V109 a10 10 0 0 1 -10 10 H38 a10 10 0 0 1 -10 -10 Z" fill="url(#glass)" stroke="#9db3bb" stroke-width="1.2"/>
+  <path d="M32.5 32 V106" stroke="#dbe9ec" stroke-width="2" opacity=".2" fill="none"/>
+  <path d="M58 34 V98" stroke="#dbe9ec" stroke-width=".8" opacity=".13" fill="none"/>
+  <g stroke="#9db3bb" stroke-width=".6" opacity=".45" fill="none">
+    <path d="M28 52 h6 M28 62 h4 M28 72 h6 M28 82 h4 M28 92 h6 M28 102 h4"/>
+  </g>
+  <path d="M29 76 Q45 71 61 76 V109 a9 9 0 0 1 -9 9 H38 a9 9 0 0 1 -9 -9 Z" fill="url(#liquid)" opacity=".9"/>
+  <path d="M29 76 Q45 71 61 76" fill="none" stroke="#ef5a61" stroke-width="1" opacity=".8"/>
+  <g fill="#f07a80" opacity=".55"><circle cx="39" cy="88" r="1.5"/><circle cx="53" cy="96" r="1"/><circle cx="45" cy="108" r="1.7"/><circle cx="56" cy="112" r=".8"/></g>
+  <rect x="31" y="38" width="28" height="28" fill="#cfd6d4" opacity=".9"/>
+  <rect x="32.5" y="39.5" width="25" height="25" fill="none" stroke="#7c0d13" stroke-width=".5" opacity=".65"/>
+  <text x="45" y="50" text-anchor="middle" font-family="Georgia,serif" font-size="10" font-style="italic" fill="#7c0d13">Rx</text>
+  <path d="M35 53 H56" stroke="#7c0d13" stroke-width=".5" opacity=".55" fill="none"/>
+  <text x="45" y="61" text-anchor="middle" font-family="monospace" font-size="4.6" fill="#4a565d">Ⅶ-1113</text>
+  <path d="M34 115 q11 5 22 0" fill="none" stroke="#dbe9ec" stroke-width=".8" opacity=".18"/>
+</svg>
+            <p class="rx-label" data-tw>处　方 / PRESCRIPTION</p>
             <ol class="rx">
               <li data-tw>每晚允许自己不完整 15 分钟</li>
               <li data-tw>蜡烛一支，燃尽即可，不必续上</li>
@@ -490,12 +571,13 @@ img{display:block;max-width:100%}
         </div>
       </section>
 
-      <!-- 5 夜间观察 -->
+      <!-- 5 夜间观察（旧版排版 + 原 SVG） -->
       <section class="page" data-i="5">
         <div class="phead">
           <span class="pnum">Ⅳ</span>
-          <div><p class="kicker" data-tw>NOCTURNAL OBSERVATION</p><h2 class="ptitle" data-tw>静 物 与 声 音</h2></div>
+          <div class="ph-txt"><p class="kicker" data-tw>NOCTURNAL OBSERVATION / 夜间观察</p><h2 class="ptitle" data-tw>静 物 与 声 音</h2><em class="sub-en" data-tw>Still Life, 00:00—05:00</em></div>
         </div>
+        <i class="red-underline"></i>
         <div class="two-col">
           <div class="col log hot-zone">
             <p data-tw><span>23:47</span>蜡烛还亮着，没有人记得点上它。</p>
@@ -505,19 +587,110 @@ img{display:block;max-width:100%}
             <div class="sig-line" data-tw>观察员签名：<b>厌</b><em>（笔迹很轻）</em></div>
           </div>
           <div class="col art">
-            <img class="night-candle deco" style="position:relative" src="assets/relic-candle.webp" alt="" loading="lazy">
-            <img class="deco night-snake" src="assets/snake.webp" alt="" loading="lazy">
+            <svg class="still" viewBox="0 0 260 340" aria-hidden="true">
+  <defs>
+    <linearGradient id="stGlass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#cfe0e4" stop-opacity=".09"/>
+      <stop offset="1" stop-color="#0a1216" stop-opacity=".14"/>
+    </linearGradient>
+    <radialGradient id="stGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#d0202b" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#d0202b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g fill="none" stroke="#9db3bb">
+    <path d="M34 320 V132 A96 96 0 0 1 226 132 V320" stroke-width="1" opacity=".24"/>
+    <path d="M44 320 V134 A86 86 0 0 1 216 134 V320" stroke-width=".6" opacity=".14"/>
+    <path d="M54 320 V136 A76 76 0 0 1 206 136 V320" stroke-width=".5" opacity=".08"/>
+    <path d="M130 36 V320" stroke-width=".5" opacity=".08"/>
+    <path d="M48 158 Q130 52 212 158" stroke-width=".5" opacity=".12"/>
+    <path d="M48 158 L130 84 L212 158" stroke-width=".5" opacity=".07"/>
+    <circle cx="130" cy="98" r="17" stroke-width=".7" opacity=".22"/>
+    <circle cx="130" cy="98" r="12" stroke-width=".5" opacity=".16"/>
+    <path d="M130 81 V115 M113 98 H147 M118 86 L142 110 M142 86 L118 110" stroke-width=".5" opacity=".18"/>
+    <circle cx="130" cy="98" r="3" stroke-width=".6" opacity=".25"/>
+    <path d="M34 190 H56 M34 230 H56 M34 270 H56 M204 190 H226 M204 230 H226 M204 270 H226" stroke-width=".5" opacity=".12"/>
+    <path d="M45 210 H56 M45 250 H56 M204 210 H215 M204 250 H215" stroke-width=".4" opacity=".08"/>
+  </g>
+  <g>
+    <path d="M126 30 H134 V300 H126 Z" fill="#9db3bb" opacity=".08"/>
+    <path d="M130 30 V300 M92 96 H168" stroke="#a9c0c8" stroke-width="2.8" fill="none" opacity=".72" stroke-linecap="round"/>
+    <path d="M128 44 V286 M132 60 V270 M96 94 H164 M96 98 H164" stroke="#cddde1" stroke-width=".5" fill="none" opacity=".28"/>
+    <path d="M130 30 l-5 9 h10 z M130 300 l-5 -9 h10 z M92 96 l9 -5 v10 z M168 96 l-9 -5 v10 z" fill="#a9c0c8" opacity=".6"/>
+    <path d="M126 34 l-4 -3 M134 34 l4 -3 M96 92 l-3 -4 M164 92 l3 -4" stroke="#a9c0c8" stroke-width=".6" fill="none" opacity=".35"/>
+    <rect x="115" y="22" width="30" height="9" fill="none" stroke="#a9c0c8" stroke-width=".6" opacity=".4"/>
+    <text x="130" y="28.6" text-anchor="middle" font-family="Georgia,serif" font-size="6" fill="#a9c0c8" opacity=".55">I·N·R·I</text>
+    <circle cx="130" cy="72" r="20" fill="none" stroke="#a9c0c8" stroke-width=".5" stroke-dasharray="1 5" opacity=".32"/>
+    <circle cx="130" cy="96" r="2.4" fill="#d0202b" opacity=".65"/>
+    <circle cx="105" cy="96" r="1.6" fill="#8fa8b0" opacity=".55"/>
+    <circle cx="155" cy="96" r="1.6" fill="#8fa8b0" opacity=".55"/>
+    <path d="M124 118 q6 5 12 0 M124 124 q6 5 12 0 M124 130 q6 5 12 0" stroke="#c9d6da" stroke-width=".7" fill="none" opacity=".3"/>
+  </g>
+  <g opacity=".82">
+    <rect x="25" y="250" width="18" height="5" rx="1" fill="#9db3bb" opacity=".6"/>
+    <path d="M28 255 H40 V263 H28 Z" fill="none" stroke="#9db3bb" stroke-width=".7"/>
+    <path d="M24 263 H44 V305 a4 4 0 0 1 -4 4 H28 a4 4 0 0 1 -4 -4 Z" fill="url(#stGlass)" stroke="#9db3bb" stroke-width="1"/>
+    <path d="M25 287 H43 V305 a3 3 0 0 1 -3 3 H28 a3 3 0 0 1 -3 -3 Z" fill="#a0161e" opacity=".78"/>
+    <path d="M25 287 q9 -3 18 0" fill="none" stroke="#e0484f" stroke-width=".6" opacity=".6"/>
+    <rect x="27" y="268" width="14" height="13" fill="#c9d2d4" opacity=".8"/>
+    <text x="34" y="277" text-anchor="middle" font-family="Georgia,serif" font-size="7" font-style="italic" fill="#7c0d13">Rx</text>
+    <path d="M27 291 h2 M27 296 h2 M27 301 h2" stroke="#9db3bb" stroke-width=".5" opacity=".5" fill="none"/>
+    <circle cx="36" cy="298" r="1" fill="#e3424b" opacity=".6"/>
+  </g>
+  <g>
+    <ellipse class="glow" cx="205" cy="232" rx="34" ry="40" fill="url(#stGlow)" opacity=".5" style="filter:blur(14px)"/>
+    <path d="M186 310 H224 l-4 -7 H190 Z" fill="#9db3bb" opacity=".16" stroke="#9db3bb" stroke-width=".7"/>
+    <path d="M199 303 H211 V250 H199 Z" fill="#c9c2b4" opacity=".5"/>
+    <path d="M199 250 q-2 16 0 28 q1 5 0 10 M211 250 q3 12 0 22 q-1 6 0 10" stroke="#ded8cb" stroke-width="1.1" fill="none" opacity=".5"/>
+    <ellipse cx="205" cy="250" rx="6" ry="2.2" fill="#ded8cb" opacity=".6"/>
+    <path d="M205 248 q2 -4 0 -7" stroke="#3d4348" stroke-width="1.3" fill="none"/>
+    <g class="flame">
+      <path d="M205 242 C196 232 200 219 205 208 C210 219 214 232 205 242 Z" fill="#c81c26" opacity=".92"/>
+      <path d="M205 239 C200 232 202 224 205 217 C208 224 210 232 205 239 Z" fill="#ef8a4b" opacity=".9"/>
+      <path d="M205 235 C202.5 230 203.5 225 205 221 C206.5 225 207.5 230 205 235 Z" fill="#f7dda6" opacity=".85"/>
+    </g>
+    <path d="M205 205 q5 -8 -1 -15 q-4 -5 1 -10" stroke="#9db3bb" stroke-width=".6" fill="none" opacity=".18"/>
+  </g>
+  <g stroke="#9db3bb" fill="none">
+    <path d="M12 312 H248" stroke-width=".8" opacity=".28"/>
+    <path d="M12 320 H248" stroke-width=".5" opacity=".12"/>
+    <path d="M56 312 l-5 8 M96 312 l3 8 M158 312 l-4 8 M206 312 l5 8 M232 312 l-3 8" stroke-width=".5" opacity=".16"/>
+    <path d="M30 320 H92 M112 320 H174 M190 320 H240" stroke-width=".4" opacity=".1"/>
+  </g>
+  <path class="snake" d="M34 304 C 88 300, 100 272, 130 264 C 164 255, 176 228, 130 216 C 88 205, 92 178, 130 168 C 170 158, 172 130, 130 122 C 94 114, 104 88, 140 80 C 158 76, 170 62, 162 46"/>
+  <path class="snake-2" d="M34 304 C 88 300, 100 272, 130 264 C 164 255, 176 228, 130 216 C 88 205, 92 178, 130 168 C 170 158, 172 130, 130 122 C 94 114, 104 88, 140 80 C 158 76, 170 62, 162 46"/>
+  <g fill="none" stroke="#dce7ea" stroke-width=".7" opacity=".35">
+    <path d="M52 298 l-3 7 M72 291 l-4 7 M96 277 l-5 6 M118 266 l-4 7 M146 258 l-3 7 M160 240 l-6 5 M150 222 l-4 7 M124 216 l-3 7 M100 207 l-4 7 M104 184 l-4 7 M128 168 l-3 7 M158 156 l-5 6 M154 136 l-6 5 M128 122 l-3 7 M110 106 l-4 7 M118 90 l-4 7 M142 80 l-3 7"/>
+  </g>
+  <g>
+    <ellipse cx="162" cy="45" rx="10" ry="6.4" transform="rotate(-26 162 45)" fill="#b9ccd2" opacity=".95"/>
+    <path d="M154 48 q7 5 14 0" stroke="#5c6b72" stroke-width=".8" fill="none" opacity=".85"/>
+    <path d="M156 41 q4 -3 8 -1 M158 49 q4 2 7 0" stroke="#e3edf0" stroke-width=".6" fill="none" opacity=".5"/>
+    <circle cx="163" cy="43" r="1.8" fill="#d0202b"/>
+    <circle cx="163" cy="43" r=".7" fill="#3a0a0d"/>
+    <path d="M169 41 l10 -4 M169 44 l10 3" stroke="#d0202b" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+    <path d="M179 37 l4 -2 M179 47 l4 2" stroke="#d0202b" stroke-width=".7" fill="none" opacity=".8"/>
+    <circle cx="157" cy="43" r=".7" fill="#5c6b72" opacity=".7"/>
+  </g>
+  <g fill="#b3121b">
+    <path d="M130 122 q2.5 7 0 10 q-2.5 -3 0 -10" opacity=".85"/>
+    <path d="M131 138 q1.6 4 0 6 q-1.6 -2 0 -6" opacity=".6"/>
+    <path d="M96 310 q3 5 0 7 q-3 -2 0 -7" opacity=".55"/>
+    <ellipse cx="97" cy="319" rx="5" ry="1.4" opacity=".35"/>
+  </g>
+</svg>
           </div>
         </div>
       </section>
 
       <!-- 6 复诊与联络 -->
       <section class="page contact" data-i="6">
-        <img class="deco hourglass" src="assets/relic-hourglass.webp" alt="" loading="lazy">
+        <img class="deco keys" src="assets/relic-key.webp" alt="" loading="lazy">
         <div class="phead">
           <span class="pnum">Ⅶ</span>
-          <div><p class="kicker" data-tw>FOLLOW-UP</p><h2 class="ptitle" data-tw>请 慢 走</h2></div>
+          <div class="ph-txt"><p class="kicker" data-tw>FOLLOW-UP / 复诊与联络</p><h2 class="ptitle" data-tw>请 慢 走</h2><em class="sub-en" data-tw>Until Next Time</em></div>
         </div>
+        <i class="red-underline"></i>
         <div class="contact-inner hot-zone">
           <p class="lead" data-tw data-glitch="你已经翻到这里了呀。">如果哪天想说点什么，<br>或者只是想让某支蜡烛多亮一会儿——</p>
           <dl class="accounts">
@@ -761,27 +934,70 @@ img{display:block;max-width:100%}
   var flood=$('#openFlood'),gateSay=$('#gateSay'),gateHint=$('#gateHint');
   var flash=$('#flash'),bolt=$('#bolt'),errTag=$('#errTag'),whisper=$('#whisper');
   function say(t){gateSay.textContent=t;gateSay.classList.remove('show');void gateSay.offsetWidth;gateSay.classList.add('show')}
+  var floodLayer=$('#floodLayer');
+  /* 轻提示：边缘零星几个字（不遮挡档案）；满屏：纯黑不透明、最顶层、密集铺满后渐渐消失 */
   function floodWords(count,dur,cb){
     clearTimeout(floodA);clearTimeout(floodB);
-    flooding=true;flood.innerHTML='';
-    flood.style.setProperty('--dur',dur+'ms');
-    var k=window.innerWidth<620?.72:1,edge=count<12;
-    for(var i=0;i<count;i++){
-      var s=document.createElement('span');s.textContent='打开';
-      s.style.left=(edge?(Math.random()<.5?1+Math.random()*23:76+Math.random()*22):1+Math.random()*94)+'%';
-      s.style.top=(edge?8+Math.random()*84:1+Math.random()*93)+'%';
-      s.style.fontSize=((count<12?16+Math.random()*24:15+Math.random()*46)*k).toFixed(0)+'px';
-      s.style.setProperty('--op',(count<12?.32+Math.random()*.4:.2+Math.random()*.62).toFixed(2));
-      s.style.setProperty('--rot',(-22+Math.random()*44).toFixed(1)+'deg');
-      flood.appendChild(s);
+    flooding=true;
+    var big=count>=12;
+    var host=big?floodLayer:flood;
+    if(big){flood.classList.remove('on');flood.innerHTML='';}
+    else{floodLayer.classList.remove('on','fade');floodLayer.innerHTML='';}
+    host.innerHTML='';
+    var W=window.innerWidth,H=window.innerHeight,k=W<620?.88:1;
+    if(big){
+      var cell,rowH;
+      if(W<620){cell=Math.max(52,W/8.2)*k;rowH=cell*.92}
+      else{cell=Math.max(46,Math.min(86,W/15))*k;rowH=cell*.70}
+      var cols=Math.ceil(W/cell)+2, rows=Math.ceil(H/rowH)+2;
+      for(var r=0;r<rows;r++)for(var c=0;c<cols;c++){
+        var s=document.createElement('span');s.className='fw';
+        var v=Math.random();
+        if(v<.10)s.classList.add('stroke');
+        else if(v<.18)s.classList.add('stroke2');
+        else if(v<.23)s.classList.add('white');
+        else if(v<.43)s.classList.add('bright');
+        else if(v<.60)s.classList.add('deep');
+        else if(v<.72)s.classList.add('ghost');
+        s.textContent='打开';
+        s.style.fontSize=((15+Math.random()*42)*k).toFixed(0)+'px';
+        s.style.left=((c-.5)*cell+(Math.random()-.5)*cell*.58).toFixed(0)+'px';
+        s.style.top=((r-.5)*rowH+(Math.random()-.5)*rowH*.52).toFixed(0)+'px';
+        s.style.setProperty('--rot',(-26+Math.random()*52).toFixed(1)+'deg');
+        s.style.setProperty('--op',(.62+Math.random()*.38).toFixed(2));
+        s.style.setProperty('--fd',(Math.random()*130).toFixed(0)+'ms');
+        s.style.setProperty('--fi',(180+Math.random()*260).toFixed(0)+'ms');
+        s.style.setProperty('--fr',(1900+Math.random()*2400).toFixed(0)+'ms');
+        s.style.setProperty('--dx',((Math.random()-.5)*9).toFixed(1)+'px');
+        s.style.setProperty('--dy',((Math.random()-.5)*9).toFixed(1)+'px');
+        host.appendChild(s);
+      }
+      host.classList.remove('fade');host.classList.add('on');
+      floodA=setTimeout(function(){
+        host.classList.add('fade');
+        floodB=setTimeout(function(){
+          host.classList.remove('on','fade');host.innerHTML='';flooding=false;if(cb)cb();
+        },1200);
+      },dur);
+    }else{
+      flood.style.setProperty('--dur',dur+'ms');
+      for(var i=0;i<count;i++){
+        var t=document.createElement('span');t.textContent='打开';
+        t.style.left=(Math.random()<.5?1+Math.random()*23:76+Math.random()*22)+'%';
+        t.style.top=(8+Math.random()*84)+'%';
+        t.style.fontSize=((16+Math.random()*24)*k).toFixed(0)+'px';
+        t.style.setProperty('--op',(.32+Math.random()*.4).toFixed(2));
+        t.style.setProperty('--rot',(-22+Math.random()*44).toFixed(1)+'deg');
+        flood.appendChild(t);
+      }
+      flood.classList.add('on');
+      floodA=setTimeout(function(){
+        flood.classList.remove('on');
+        floodB=setTimeout(function(){
+          flood.innerHTML='';flooding=false;if(cb)cb();
+        },400);
+      },dur+300);
     }
-    flood.classList.add('on');
-    floodA=setTimeout(function(){
-      flood.classList.remove('on');
-      floodB=setTimeout(function(){
-        flood.innerHTML='';flooding=false;if(cb)cb();
-      },400);
-    },dur+300);
   }
   var WHISPERS=['「再翻一页。」','「别停。」','「你想看的不就是这个吗？」','「打开吧。」','「已经走到这里了。」','「继续往下看。」','「别合上。」','「看清楚一点。」','「乖，慢慢看。」'];
   var ERRORS=['这一行不是我写的。','真的 / 假的','别分辨了。','> 笔迹不太对','你确定刚才读过这一句吗？','有一句，是她写的。'];
@@ -837,7 +1053,7 @@ img{display:block;max-width:100%}
       floodWords(6,1200);
     }else{
       say('「我让你打开。」');
-      floodWords(64,1350,function(){
+      floodWords(190,1150,function(){
         deny.classList.add('dissolve');
         later(function(){
           if(deny.parentNode)deny.parentNode.removeChild(deny);
